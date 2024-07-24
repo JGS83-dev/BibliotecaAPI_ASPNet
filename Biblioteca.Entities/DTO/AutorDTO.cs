@@ -1,18 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Numerics;
 
 namespace Biblioteca.Entities.DTO
 {
     public class AutorDTO
     {
-        public BigInteger Codigo { get; set; }
+        public int Codigo { get; set; }
 
         [Required(ErrorMessage ="El nombre es requerido")]
         [StringLength(50,ErrorMessage = "El nombre no puede tener mas de 50 caracteres")]
-        public string NombreAutor { get; set; }
+        public string NombreAutor { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El apellido es requerido")]
         [StringLength(50, ErrorMessage = "El apellido no puede tener mas de 50 caracteres")]
-        public string ApellidoAutor { get; set; }
+        public string ApellidoAutor { get; set; } = string.Empty;
     }
 }

@@ -20,7 +20,7 @@ namespace Biblioteca.API.Controllers
 
         // GET: api/<AutorController>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<AutorDTO>),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<AutorDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
 
         public async Task<IActionResult> GetAll()
@@ -35,7 +35,7 @@ namespace Biblioteca.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> Get(int id)
         {
-            AutorDTO result = (AutorDTO) await this.service.GetAutorByIdAsync(id);
+            AutorDTO result = (AutorDTO)await this.service.GetAutorByIdAsync(id);
             return (result != null) ? (IActionResult)this.Ok(result) : (IActionResult)this.NoContent();
         }
 
@@ -45,13 +45,13 @@ namespace Biblioteca.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Post(AutorDTO model)
         {
-            if(model == null)
+            if (model == null)
             {
                 return (IActionResult)this.BadRequest();
             }
 
             int result = await this.service.InsertAutorAsync(model);
-            return (result > 0) ? (IActionResult)this.CreatedAtAction("Post",result) : (IActionResult)this.BadRequest();
+            return (result > 0) ? (IActionResult)this.CreatedAtAction("Post", result) : (IActionResult)this.BadRequest();
         }
 
         // PUT api/<AutorController>/5
@@ -66,7 +66,7 @@ namespace Biblioteca.API.Controllers
             }
 
             AutorDTO result = await this.service.UpdateAutorAsync(model);
-            return (result != null) ? (IActionResult)this.Ok( result) : (IActionResult)this.BadRequest();
+            return (result != null) ? (IActionResult)this.Ok(result) : (IActionResult)this.BadRequest();
         }
 
         // DELETE api/<AutorController>/5
@@ -76,7 +76,8 @@ namespace Biblioteca.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             bool result = await this.service.DeleteAutorAsync(id);
-            return (result) ? (IActionResult)this.Ok( result) : (IActionResult)this.BadRequest();
+            return (result) ? (IActionResult)this.Ok(result) : (IActionResult)this.BadRequest();
         }
     }
+}
 }
