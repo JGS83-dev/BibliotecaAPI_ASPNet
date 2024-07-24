@@ -10,4 +10,9 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Biblioteca.DAL\Biblioteca.DAL.csproj" />
+    <ProjectReference Include="..\Biblioteca.Entities\Biblioteca.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

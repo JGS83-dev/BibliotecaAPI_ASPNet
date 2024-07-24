@@ -12,4 +12,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Biblioteca.Common\Biblioteca.Common.csproj" />
+    <ProjectReference Include="..\Biblioteca.Entities\Biblioteca.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
