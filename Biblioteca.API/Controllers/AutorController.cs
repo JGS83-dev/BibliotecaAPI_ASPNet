@@ -31,29 +31,52 @@ namespace Biblioteca.API.Controllers
 
         // GET api/<AutorController>/5
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(IEnumerable<AutorDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(AutorDTO), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            AutorDTO result = (AutorDTO) await this.service.GetAutorByIdAsync(id);
+            return (result != null) ? (IActionResult)this.Ok(result) : (IActionResult)this.NoContent();
         }
 
         // POST api/<AutorController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Post(AutorDTO model)
         {
+            if(model == null)
+            {
+                return (IActionResult)this.BadRequest();
+            }
+
+            int result = await this.service.InsertAutorAsync(model);
+            return (result > 0) ? (IActionResult)this.CreatedAtAction("Post",result) : (IActionResult)this.BadRequest();
         }
 
         // PUT api/<AutorController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(typeof(AutorDTO), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Put(int id, AutorDTO model)
         {
+            if (model == null)
+            {
+                return (IActionResult)this.BadRequest();
+            }
+
+            AutorDTO result = await this.service.UpdateAutorAsync(model);
+            return (result != null) ? (IActionResult)this.Ok( result) : (IActionResult)this.BadRequest();
         }
 
         // DELETE api/<AutorController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Delete(int id)
         {
+            bool result = await this.service.DeleteAutorAsync(id);
+            return (result) ? (IActionResult)this.Ok( result) : (IActionResult)this.BadRequest();
         }
     }
 }
