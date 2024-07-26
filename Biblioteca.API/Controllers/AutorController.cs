@@ -43,7 +43,7 @@ namespace Biblioteca.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Post(AutorDTO model)
+        public async Task<IActionResult> Post([FromBody] AutorDTO model)
         {
             if (model == null)
             {
@@ -58,7 +58,7 @@ namespace Biblioteca.API.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(AutorDTO), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> Put(int id, AutorDTO model)
+        public async Task<IActionResult> Put(int id, [FromBody] AutorDTO model)
         {
             if (model == null)
             {
