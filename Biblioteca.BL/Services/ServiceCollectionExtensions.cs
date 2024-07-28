@@ -7,9 +7,12 @@ namespace Biblioteca.BL.Services
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddServiceConnector(this IServiceCollection services) { 
+        public static IServiceCollection AddServiceConnector(this IServiceCollection services)
+        {
             services.AddAutoMapper(typeof(AutomapperProfile).Assembly);
             services.AddTransient<IAutorService, AutorService>();
+            services.AddTransient<IEditorialService, EditorialService>();
+            services.AddTransient<ILibroService, LibroService>();
             services.AddRepositoryConnector();
             return services;
         }
