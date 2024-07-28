@@ -1,7 +1,5 @@
-﻿
-
+﻿using Microsoft.Extensions.DependencyInjection;
 using Biblioteca.DAL.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Biblioteca.DAL.Services
 {
@@ -9,8 +7,10 @@ namespace Biblioteca.DAL.Services
     {
         public static IServiceCollection AddRepositoryConnector(this IServiceCollection services)
         {
-            services.AddTransient<IDatabaseRepository,DatabaseRepository>();
-            services.AddTransient<IAutorRepository,AutorRepository>();
+            services.AddTransient<IDatabaseRepository, DatabaseRepository>();
+            services.AddTransient<IAutorRepository, AutorRepository>();
+            services.AddTransient<IEditorialRepository, EditorialRepository>();
+            services.AddTransient<ILibroRepository, LibroRepository>();
             return services;
         }
     }
